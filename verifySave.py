@@ -54,7 +54,7 @@ class Generate(QWidget, Ui_Generate):
     def show_valerrordialog(self, incrows):
         d = ValErrDialog()
         for i in incrows:
-            print(i)
+#            print(i)
             d.plainTextEdi_missing_fields.appendPlainText(i)
 
         d.exec_()
@@ -79,7 +79,7 @@ class Generate(QWidget, Ui_Generate):
                         pwidget = parent.tableWidget_construct.cellWidget(c_row, column)
                         checkbox = pwidget.findChild(QCheckBox)
                         state = checkbox.checkState()
-                        print("state", state)
+#                        print("state", state)
 
                         if state == 2:
                             data_row.append('NORMAL')
@@ -113,7 +113,7 @@ class Generate(QWidget, Ui_Generate):
 
                         value = parent.yconfig['Methods'][cmethod]['Panels'][cpanel]['PanelTarget']
 
-                        print(value)
+#                        print(value)
 
                         if len(value) > 0:
                             data_row.append(value.strip())
@@ -125,7 +125,7 @@ class Generate(QWidget, Ui_Generate):
                                                                  parent.sdata_fields_ss['Sample_ID']['c_p'])
                         if self.cell_contains_text(item):
                             value = item.text()
-                            print(value)
+#                            print(value)
                             data_row.append(value.strip())
                         else:
                             data_row.append("")
@@ -330,16 +330,16 @@ class Generate(QWidget, Ui_Generate):
 
             path_file = os.path.join(path, samplesheet_file)
 
+            print(path)
             print(path_file)
 
             ss_out = self.plainTextEdit.toPlainText()
 
-            if not os.path.exists(os.path.dirname(path)):
+            if not os.path.isdir(path):
                 try:
-                    os.makedirs(os.path.dirname(path))
-                except OSError as exc:
-                        if exc.error != errno.EEXIST:
-                            raise
+                    os.makedirs(path)
+                except OSError:
+                    print("could not create folder")
 
             with open(path_file, "w") as f:
                 f.write(ss_out)
