@@ -48,7 +48,7 @@ data_fields = {
         'combine': False,
         'value_constraints': False
     },
-    'Prep_ID': {
+    'Library_ID': {
         'c_p': 4,
         'ss_p': 4,
         'c_w': 128,

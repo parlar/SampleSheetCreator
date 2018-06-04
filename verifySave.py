@@ -241,7 +241,7 @@ class Generate(QWidget, Ui_Generate):
         samplesheet.append(','.join(["Description", str(description)]))
         samplesheet.append(','.join(["Institute", str(institute)]))
 
-        samplesheet.append(" ")
+        samplesheet.append(",")
 
         """ enter settings data """
         settings_dict = parent.yconfig['Methods'][cmethod]['Settings']
@@ -251,7 +251,7 @@ class Generate(QWidget, Ui_Generate):
             if key != "Reads":
                 samplesheet.append(','.join([str(key), str(value)]))
 
-        samplesheet.append(" ")
+        samplesheet.append(",")
 
         """ enter reads data """
         samplesheet.append('[Reads]')
@@ -260,7 +260,7 @@ class Generate(QWidget, Ui_Generate):
         for read in reads_list:
             samplesheet.append(str(read))
 
-        samplesheet.append(" ")
+        samplesheet.append(",")
 
         samplesheet.append('[Data]')
 

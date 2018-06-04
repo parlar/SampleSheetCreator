@@ -132,7 +132,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.tableWidget_I5.horizontalHeader().setStretchLastSection(True)
         self.tableWidget_I7.horizontalHeader().setStretchLastSection(True)
 
-        self.setWindowTitle("SampleSheetCreator")
+        self.setWindowTitle("SampleSheetCreator v.0.3.4")
         self.setWindowIcon(QtGui.QIcon('icons/icon.png'))
         self.actionPreferences.triggered.connect(self.show_preferences)
 
