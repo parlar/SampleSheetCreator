@@ -9,9 +9,10 @@ data_fields = {
         'required': False,
         'duplicates_ok': True,
         'combine': False,
-        'value_constraints': False
+        'value_constraints': False,
+        'tooltip': "Specify sample as NORMAL.\nNot required field."
     },
-    'Batch': {
+    'Group': {
         'c_p': 1,
         'ss_p': 3,
         'c_w': 60,
@@ -22,7 +23,8 @@ data_fields = {
         'required': True,
         'duplicates_ok': True,
         'combine': False,
-        'value_constraints': False
+        'value_constraints': False,
+        'tooltip': "Specify group that sample belongs to.\nMultiple groups are separated by comma, i.e. 1,2.\nRequired field."
     },
     'Sample_ID': {
         'c_p': 2,
@@ -34,7 +36,8 @@ data_fields = {
         'required': True,
         'duplicates_ok': False,
         'combine': False,
-        'value_constraints': False
+        'value_constraints': False,
+        'tooltip': "Specify Sample_ID.\nMust be unique.\nRequired field."
     },
     'Sample_Name': {
         'c_p': -1,
@@ -58,7 +61,9 @@ data_fields = {
         'required': True,
         'duplicates_ok': True,
         'combine': False,
-        'value_constraints': False
+        'value_constraints': False,
+        'tooltip': "Specify Library_ID, such as date\nwhen library was made.\nRequired field."
+
     },
     'Sex': {
         'c_p': 3,
@@ -70,7 +75,8 @@ data_fields = {
         'required': True,
         'duplicates_ok': True,
         'combine': False,
-        'value_constraints': "m,f"
+        'value_constraints': "m,f",
+        'tooltip': "Sex of sample, allowed values: m/f.\nRequired field."
     },
     'I5_Index_ID': {
         'c_p': 5,
@@ -82,7 +88,8 @@ data_fields = {
         'required': False,
         'duplicates_ok': True,
         'combine': False,
-        'value_constraints': False
+        'value_constraints': False,
+        'tooltip': "Combination of I5_Index_ID and I7_Index_ID\nmust be unique for each sample.\nNot required field."
     },
     'index2': {
         'c_p': -1,
@@ -106,7 +113,8 @@ data_fields = {
         'required': True,
         'duplicates_ok': True,
         'combine': False,
-        'value_constraints': False
+        'value_constraints': False,
+        'tooltip': "Combination of I5_Index_ID and I7_Index_ID\nmust be unique for each sample.\nIf I5_Index_ID is not populated I7_Index_ID must be unique.\nRequired field."
     },
     'index': {
         'c_p': -1,
@@ -142,9 +150,10 @@ data_fields = {
         'required': True,
         'duplicates_ok': True,
         'combine': False,
-        'value_constraints': False
+        'value_constraints': False,
+        'tooltip': "Analysis_Def specifies definition file containing available\nanalyses (gene sets) under the Analysis field.\nOnly files in the Definition combobox are allowed.\nRequired field."
     },
-    'Panel_Target': {
+    'Panel': {
         'c_p':-1,
         'ss_p': 11,
         'c_w': 128,
@@ -154,7 +163,8 @@ data_fields = {
         'required': False,
         'duplicates_ok': True,
         'combine': False,
-        'value_constraints': False
+        'value_constraints': False,
+        'tooltip': "Panel specifies selected panel. contains definition file specifying available\nanalyses (gene sets)under the Analysis field.\nOnly files in the Definition combobox are allowed.\nRequired field."
     },
     'Method': {
         'c_p': -1,

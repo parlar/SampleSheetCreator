@@ -96,8 +96,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 max_fields = data_fields.data_fields[k]['c_p']
 
         self.tableWidget_construct.setColumnCount(max_fields+1)
+        self.tableWidget_construct.setRowCount(64)
 
-        self.tableWidget_construct.setRowCount(30)
+        for r in range(64):
+            item = QTableWidgetItem()
+            item.setText(str(r+1))
+            item.setTextAlignment(Qt.AlignHCenter)
+            item.setToolTip("Hold down the CTRL key\nto select multiple rows")
+
+            self.tableWidget_construct.setVerticalHeaderItem(r, item)
+
         self.tableWidget_construct.setAcceptDrops(True)
 
         header_labels = []
@@ -107,17 +115,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 cnum = data_fields.data_fields[k]['c_p']
                 cwidth = data_fields.data_fields[k]['c_w']
                 self.tableWidget_construct.setColumnWidth(cnum, cwidth)
-                header_labels.append(k)
+                item = QTableWidgetItem()
+                item.setText(k)
+                try:
+                    item.setToolTip(data_fields.data_fields[k]['tooltip'])
+                except KeyError:
+                    pass
+
+                self.tableWidget_construct.setHorizontalHeaderItem(cnum, item)
+
+                #header_labels.append(k)
 
         self.tableWidget_construct.horizontalHeader().setStretchLastSection(True)
-        self.tableWidget_construct.setHorizontalHeaderLabels(header_labels)
+#        self.tableWidget_construct.setHorizontalHeaderLabels(header_labels)
+        self.tableWidget_construct.verticalHeader().setMinimumWidth(30)
 
-        for row in range(30):
-#            chkBoxItem = QTableWidgetItem()
-#            chkBoxItem.setFlags(Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)
-#            chkBoxItem.setCheckState(Qt.Unchecked)
-#            chkBoxItem.setTextAlignment(QtCore.Qt.AlignCenter)
-#            self.tableWidget_construct.setItem(row, data_fields.data_fields['N']['c_p'], chkBoxItem)
+        for row in range(64):
             chk_bx = QCheckBox()
             cell_widget = QWidget()
             chk_bx.setCheckState(Qt.Unchecked)
@@ -132,7 +145,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.tableWidget_I5.horizontalHeader().setStretchLastSection(True)
         self.tableWidget_I7.horizontalHeader().setStretchLastSection(True)
 
-        self.setWindowTitle("SampleSheetCreator v.0.3.4")
+        self.setWindowTitle("SampleSheetCreator v.0.3.5")
         self.setWindowIcon(QtGui.QIcon('icons/icon.png'))
         self.actionPreferences.triggered.connect(self.show_preferences)
 
@@ -628,7 +641,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         batch2panel = defaultdict(dict)
 
         for r in range(rows):
-            batch_c = required_fields_dict['Batch']
+            batch_c = required_fields_dict['Group']
             panel_c = required_fields_dict['Panel']
 
             batch_item_list = []
@@ -795,7 +808,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.tableWidget_construct.setEnabled(False)
             self.pushButton_generate.setEnabled(False)
 
-            for row in range(30):
+            for row in range(64):
 #                chkBoxItem = QTableWidgetItem()
 #                chkBoxItem.setFlags(Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)
 #                chkBoxItem.setCheckState(Qt.Unchecked)

@@ -86,7 +86,7 @@ class Generate(QWidget, Ui_Generate):
                         else:
                             data_row.append('STANDARD')
 
-                    elif field is 'Batch':
+                    elif field is 'Group':
                         item = parent.tableWidget_construct.item(c_row, parent.sdata_fields_ss[field]['c_p'])
                         if self.cell_contains_text(item):
                             value = item.text()
@@ -187,12 +187,12 @@ class Generate(QWidget, Ui_Generate):
             if self.cell_contains_text(sample_item):
                 current_row_data = self.crow2list(parent, row)
                 sample_id = current_row_data[name2col['Sample_ID']]
-                batch_list = current_row_data[name2col['Batch']].split("/")
+                batch_list = current_row_data[name2col['Group']].split("/")
                 for batch in batch_list:
                     data_dict[batch][sample_id] = current_row_data
 
         for batch, subdict in data_dict.items():
-            batchname = "Batch " + batch
+            batchname = "Group " + batch
             if not tree_dict[batch]:
                 tree_dict[batch] = QTreeWidgetItem(self.treeWidget)
                 tree_dict[batch].setText(0, batchname)
