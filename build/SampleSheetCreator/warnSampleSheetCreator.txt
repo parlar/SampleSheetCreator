@@ -1,7 +1,6 @@
 missing module named resource - imported by posix, C:\Users\parlar\PycharmProjects\SampleSheetCreator\SampleSheetCreator.py
 missing module named posix - imported by os, C:\Users\parlar\PycharmProjects\SampleSheetCreator\SampleSheetCreator.py
 missing module named _posixsubprocess - imported by subprocess, C:\Users\parlar\PycharmProjects\SampleSheetCreator\SampleSheetCreator.py
-missing module named org - imported by pickle, C:\Users\parlar\PycharmProjects\SampleSheetCreator\SampleSheetCreator.py
 missing module named readline - imported by cmd, code, pdb, C:\Users\parlar\PycharmProjects\SampleSheetCreator\SampleSheetCreator.py
 excluded module named _frozen_importlib - imported by importlib, importlib.abc, C:\Users\parlar\PycharmProjects\SampleSheetCreator\SampleSheetCreator.py
 missing module named _frozen_importlib_external - imported by importlib._bootstrap, importlib, importlib.abc, C:\Users\parlar\PycharmProjects\SampleSheetCreator\SampleSheetCreator.py
@@ -12,9 +11,10 @@ missing module named 'java.lang' - imported by platform, C:\Users\parlar\Pycharm
 missing module named vms_lib - imported by platform, C:\Users\parlar\PycharmProjects\SampleSheetCreator\SampleSheetCreator.py
 missing module named termios - imported by tty, C:\Users\parlar\PycharmProjects\SampleSheetCreator\SampleSheetCreator.py, getpass
 missing module named grp - imported by shutil, tarfile, C:\Users\parlar\PycharmProjects\SampleSheetCreator\SampleSheetCreator.py
-missing module named pwd - imported by posixpath, shutil, tarfile, http.server, webbrowser, C:\Users\parlar\PycharmProjects\SampleSheetCreator\SampleSheetCreator.py, netrc, getpass
 missing module named _dummy_threading - imported by dummy_threading, C:\Users\parlar\PycharmProjects\SampleSheetCreator\SampleSheetCreator.py
 missing module named 'org.python' - imported by copy, C:\Users\parlar\PycharmProjects\SampleSheetCreator\SampleSheetCreator.py, xml.sax
+missing module named pwd - imported by posixpath, shutil, tarfile, http.server, webbrowser, C:\Users\parlar\PycharmProjects\SampleSheetCreator\SampleSheetCreator.py, netrc, getpass
+missing module named org - imported by pickle, C:\Users\parlar\PycharmProjects\SampleSheetCreator\SampleSheetCreator.py
 missing module named copy_reg - imported by cStringIO, ruamel.yaml.representer
 missing module named cStringIO - imported by ruamel.yaml.compat
 missing module named StringIO - imported by ruamel.yaml.compat
