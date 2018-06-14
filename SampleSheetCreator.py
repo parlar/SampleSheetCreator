@@ -7,12 +7,19 @@ from ruamel.yaml import YAML
 from collections import OrderedDict
 from collections import defaultdict
 from collections import Counter
+import qdarkgraystyle
 
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtCore import QSettings
 from PyQt5.QtWidgets import *
+
+from PyQt5.QtGui import QGuiApplication
+from PyQt5.QtCore import QUrl
+from PyQt5.QtQuick import QQuickView
+
+
 #from PyQt5.QtWidgets import QApplication
 
 from preferences import Preferences
@@ -101,7 +108,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         for r in range(64):
             item = QTableWidgetItem()
             item.setText(str(r+1))
-            item.setTextAlignment(Qt.AlignHCenter)
+            item.setTextAlignment(Qt.AlignCenter)
+
             item.setToolTip("Hold down the CTRL key\nto select multiple rows")
 
             self.tableWidget_construct.setVerticalHeaderItem(r, item)
@@ -848,7 +856,26 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 
 def main():
+#    s = QStyleFactory.create('Fusion')
     app = QApplication(sys.argv)
+
+    app.setStyle('Fusion')
+#    palette = QtGui.QPalette()
+#    palette.setColor(QtGui.QPalette.Window, QtGui.QColor(53, 53, 53))
+#    palette.setColor(QtGui.QPalette.WindowText, QtCore.Qt.white)
+#    palette.setColor(QtGui.QPalette.Base, QtGui.QColor(15, 15, 15))
+#    palette.setColor(QtGui.QPalette.AlternateBase, QtGui.QColor(53, 53, 53))
+#    palette.setColor(QtGui.QPalette.ToolTipBase, QtCore.Qt.white)
+#    palette.setColor(QtGui.QPalette.ToolTipText, QtCore.Qt.white)
+#    palette.setColor(QtGui.QPalette.Text, QtCore.Qt.white)
+#    palette.setColor(QtGui.QPalette.Button, QtGui.QColor(53, 53, 53))
+#    palette.setColor(QtGui.QPalette.ButtonText, QtCore.Qt.white)
+#    palette.setColor(QtGui.QPalette.BrightText, QtCore.Qt.red)
+
+#    palette.setColor(QtGui.QPalette.Highlight, QtGui.QColor(142, 45, 197).lighter())
+#    palette.setColor(QtGui.QPalette.HighlightedText, QtCore.Qt.black)
+#    app.setPalette(palette)
+
     main_window = MainWindow()
     main_window.show()
     sys.exit(app.exec_())
