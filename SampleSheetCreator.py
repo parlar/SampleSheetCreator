@@ -20,6 +20,9 @@ from verifySave import Generate
 from gui.mainWindow import Ui_MainWindow
 from gui.validation_error import Ui_Dialog
 import data_fields
+from qtmodern.styles import dark
+from qtmodern.windows import ModernWindow
+
 
 class ValErrDialog(QDialog, Ui_Dialog):
     def __init__(self):
@@ -849,8 +852,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 def main():
     app = QApplication(sys.argv)
+    dark(app)
     main_window = MainWindow()
-    main_window.show()
+    mw = ModernWindow(main_window)
+    mw.show()
+
+#    main_window.show()
     sys.exit(app.exec_())
 
 if __name__ == "__main__":
