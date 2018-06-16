@@ -152,7 +152,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             cell_widget.setLayout(lay_out)
             self.tableWidget_construct.setCellWidget(row, 0, cell_widget)
 
-
         self.tableWidget_I5.horizontalHeader().setStretchLastSection(True)
         self.tableWidget_I7.horizontalHeader().setStretchLastSection(True)
 
