@@ -22,6 +22,7 @@ from gui.validation_error import Ui_Dialog
 import data_fields
 from qtmodern.styles import dark
 from qtmodern.windows import ModernWindow
+from qtpy.QtGui import QPalette, QColor
 
 
 class ValErrDialog(QDialog, Ui_Dialog):
@@ -38,7 +39,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super(MainWindow, self).__init__()
         self.setupUi(self)
 
+        self.label_3.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.SampleSheetCreator_settings = QSettings('vll', 'SampleSheetCreator')
+
+#        self.layout = QHBoxLayout(self)
+#        self.layout.setContentsMargins(0, 0, 0, 0)
+#        self.grip1 = QSizeGrip(self)
+#        self.grip2 = QSizeGrip(self)
+#        self.layout.addWidget(self.grip1, 0, Qt.AlignLeft | Qt.AlignTop)
+#        self.layout.addWidget(self.grip2, 0, Qt.AlignRight | Qt.AlignBottom)
 
         yaml = YAML()
         self.yconfig = ""
@@ -104,9 +113,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         for r in range(64):
             item = QTableWidgetItem()
             item.setText(str(r+1))
-            item.setTextAlignment(Qt.AlignHCenter)
+            item.setTextAlignment(Qt.AlignCenter)
             item.setToolTip("Hold down the CTRL key\nto select multiple rows")
-
             self.tableWidget_construct.setVerticalHeaderItem(r, item)
 
         self.tableWidget_construct.setAcceptDrops(True)
@@ -148,7 +156,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.tableWidget_I5.horizontalHeader().setStretchLastSection(True)
         self.tableWidget_I7.horizontalHeader().setStretchLastSection(True)
 
-        self.setWindowTitle("SampleSheetCreator v.0.3.6")
+        self.setWindowTitle("SampleSheetCreator v.0.3.7")
         self.setWindowIcon(QtGui.QIcon('icons/icon.png'))
         self.actionPreferences.triggered.connect(self.show_preferences)
 
@@ -166,6 +174,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         if self.yconfig and self.yindices:
             self.populate_all()
+
+        self.toggle_activated()
 
         self.clip = QApplication.clipboard()
 
@@ -726,7 +736,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         for index in sorted(indexes):
             row = index.row()
-            self.tableWidget_construct.setItem(row, data_fields.data_fields['Analysis_Def']['c_p'], QTableWidgetItem(canalysisdef))
+            self.tableWidget_construct.setItem(row, data_fields.data_fields['Definition']['c_p'], QTableWidgetItem(canalysisdef))
             self.tableWidget_construct.setItem(row, data_fields.data_fields['Panel']['c_p'], QTableWidgetItem(cpanel))
             self.tableWidget_construct.setItem(row, data_fields.data_fields['Analysis']['c_p'], QTableWidgetItem(canalysis))
 
@@ -812,14 +822,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.pushButton_generate.setEnabled(False)
 
             for row in range(64):
-#                chkBoxItem = QTableWidgetItem()
-#                chkBoxItem.setFlags(Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)
-#                chkBoxItem.setCheckState(Qt.Unchecked)
-#                chkBoxItem.setTextAlignment(QtCore.Qt.AlignCenter)
-#                self.tableWidget_construct.setItem(row, 0, chkBoxItem)
                 self.tableWidget_construct.setItem(row, data_fields.data_fields['I5_Index_ID']['c_p'], QTableWidgetItem(""))
                 self.tableWidget_construct.setItem(row, data_fields.data_fields['I7_Index_ID']['c_p'], QTableWidgetItem(""))
-                self.tableWidget_construct.setItem(row, data_fields.data_fields['Analysis_Def']['c_p'], QTableWidgetItem(""))
+                self.tableWidget_construct.setItem(row, data_fields.data_fields['Definition']['c_p'], QTableWidgetItem(""))
                 self.tableWidget_construct.setItem(row, data_fields.data_fields['Panel']['c_p'], QTableWidgetItem(""))
                 self.tableWidget_construct.setItem(row, data_fields.data_fields['Analysis']['c_p'], QTableWidgetItem(""))
                 self.tableWidget_construct.setItem(row, data_fields.data_fields['Method']['c_p'], QTableWidgetItem(""))
@@ -851,11 +856,49 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 
 def main():
+    print(str(QStyleFactory.keys()))
+
     app = QApplication(sys.argv)
+
     dark(app)
-    main_window = MainWindow()
-    mw = ModernWindow(main_window)
+
+    stylesheet = """
+                    QTableWidget { 
+                        background-color: rgb(80, 80, 80);
+                    }
+    
+                    QPushButton { 
+                        background-color: rgb(90,70,0); 
+                    }
+                    QCheckBox::indicator  {
+                        width: 15px;
+                        height: 15px;
+                        margin: 4px;
+                        border-radius: 5px;
+                        border: 3px solid rgb(120,90,0); 
+                    }
+                    QCheckBox::indicator::unchecked  {
+                        background-color: transparent rgb(80, 80, 80);
+                    }
+                    QCheckBox::indicator::checked {
+                        background-color: rgb(150,120,0);
+                    }
+                    """
+
+    app.setStyleSheet(stylesheet)
+
+    window = MainWindow()
+    window.setWindowFlags(QtCore.Qt.CustomizeWindowHint | QtCore.Qt.FramelessWindowHint | QtCore.Qt.Tool)
+    window.move(0, 0)
+    window.setGeometry(QtCore.QRect(300, 300, 640, 480))  # arbitrary size/location
+
+    sizegrip = QtWidgets.QSizeGrip(window)
+    window.horizontalLayout_2.addWidget(sizegrip, 0, QtCore.Qt.AlignBottom | QtCore.Qt.AlignRight)
+
+    mw = ModernWindow(window)
+
     mw.show()
+#    main_window.show()
 
 #    main_window.show()
     sys.exit(app.exec_())

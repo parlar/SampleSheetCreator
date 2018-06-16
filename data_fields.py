@@ -140,8 +140,8 @@ data_fields = {
         'combine': "I7_Index_ID,I5_Index_ID",
         'value_constraints': False
     },
-    'Analysis_Def': {
-        'c_p': 7,
+    'Definition': {
+        'c_p': 8,
         'ss_p': 10,
         'c_w': 128,
         'cb': False,
@@ -153,19 +153,19 @@ data_fields = {
         'value_constraints': False,
         'tooltip': "Analysis_Def specifies definition file containing available\nanalyses (gene sets) under the Analysis field.\nOnly files in the Definition combobox are allowed.\nRequired field."
     },
-    'Panel': {
-        'c_p':-1,
-        'ss_p': 11,
-        'c_w': 128,
-        'cb': False,
-        'construct': False,
-        'ss': True,
-        'required': False,
-        'duplicates_ok': True,
-        'combine': False,
-        'value_constraints': False,
-        'tooltip': "Panel specifies selected panel. contains definition file specifying available\nanalyses (gene sets)under the Analysis field.\nOnly files in the Definition combobox are allowed.\nRequired field."
-    },
+#    'Panel': {
+#        'c_p':-1,
+#        'ss_p': 11,
+#        'c_w': 128,
+#        'cb': False,
+#        'construct': False,
+#        'ss': True,
+#        'required': False,
+#        'duplicates_ok': True,
+#        'combine': False,
+#        'value_constraints': False,
+#        'tooltip': "Panel specifies selected panel. contains definition file specifying available\nanalyses (gene sets)under the Analysis field.\nOnly files in the Definition combobox are allowed.\nRequired field."
+#    },
     'Method': {
         'c_p': -1,
         'ss_p': 12,
@@ -179,7 +179,7 @@ data_fields = {
         'value_constraints': False
     },
     'Panel': {
-        'c_p': 8,
+        'c_p': 7,
         'ss_p': 13,
         'c_w': 128,
         'cb': False,
@@ -188,7 +188,8 @@ data_fields = {
         'required': True,
         'duplicates_ok': True,
         'combine': False,
-        'value_constraints': False
+        'value_constraints': False,
+        'tooltip': "Panel specifies selected panel. contains definition file specifying available\nanalyses (gene sets)under the Analysis field.\nOnly files in the Definition combobox are allowed.\nRequired field."
     },
     'Analysis': {
         'c_p': 9,
@@ -200,7 +201,8 @@ data_fields = {
         'required': True,
         'duplicates_ok': True,
         'combine': False,
-        'value_constraints': False
+        'value_constraints': False,
+        'tooltip': "Analysis specifies selected present in selected Definition."
     },
     'Comment': {
         'c_p': 10,
