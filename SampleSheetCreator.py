@@ -22,7 +22,7 @@ from gui.validation_error import Ui_Dialog
 import data_fields
 from qtmodern.styles import dark
 from qtmodern.windows import ModernWindow
-from qtpy.QtGui import QPalette, QColor
+from qtpy.QtGui import QPalette
 
 
 class ValErrDialog(QDialog, Ui_Dialog):
@@ -421,7 +421,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def show_preferences(self):
         self.preferences = Preferences(self)
-        self.preferences.show()
+        self.modern_pref = ModernWindow(self.preferences)
+        self.modern_pref.show()
 
     def show_valerrordialog(self, incrows):
         d = ValErrDialog()
@@ -444,7 +445,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def show_generate(self):
         self.generate = Generate(self)
         self.generate.setWindowModality(QtCore.Qt.ApplicationModal)
-        self.generate.show()
+        self.generate_modern = ModernWindow(self.generate)
+        self.generate_modern.show()
 
     def validateTable(self):
         rows = self.tableWidget_construct.rowCount()
@@ -891,8 +893,8 @@ def main():
     window.move(0, 0)
     window.setGeometry(QtCore.QRect(300, 300, 640, 480))  # arbitrary size/location
 
-    sizegrip = QtWidgets.QSizeGrip(window)
-    window.horizontalLayout_2.addWidget(sizegrip, 0, QtCore.Qt.AlignBottom | QtCore.Qt.AlignRight)
+#    sizegrip = QtWidgets.QSizeGrip(window)
+#    window.horizontalLayout_2.addWidget(sizegrip, 0, QtCore.Qt.AlignBottom | QtCore.Qt.AlignRight)
 
     mw = ModernWindow(window)
 

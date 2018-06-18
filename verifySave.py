@@ -6,6 +6,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from gui.generate import Ui_Generate
 from gui.validation_error import Ui_Dialog
+from qtmodern.styles import dark
+from qtmodern.windows import ModernWindow
 
 import datetime
 
@@ -40,6 +42,36 @@ class Generate(QWidget, Ui_Generate):
 
         self.setWindowTitle("Review and Save")
         self.setWindowIcon(QtGui.QIcon('icons/icon.png'))
+
+        stylesheet = """
+                        QTableWidget { 
+                            background-color: rgb(80, 80, 80);
+                        }
+
+                        QPushButton { 
+                            background-color: rgb(90,70,0); 
+                        }
+                        QTreeWidget::indicator  {
+                            width: 10px;
+                            height: 10px;
+                            margin: 5px;
+                            border-radius: 5px;
+                            border: 3px solid rgb(120,90,0); 
+                        }
+                        QTreeWidget::indicator::unchecked  {
+                            background-color: transparent rgb(80, 80, 80);
+                        }
+                        QTreeWidget::indicator::checked {
+                            background-color: rgb(150,120,0);
+                        }
+                        QTreeWidget {
+                            background-color: rgb(80, 80, 80);
+                        }
+                        """
+
+        self.setStyleSheet(stylesheet)
+        self.grip1 = QSizeGrip(self)
+        self.verticalLayout.addWidget(self.grip1, 0, Qt.AlignRight | Qt.AlignBottom)
 
     def cell_contains_text(self, item):
         if item != None:
@@ -206,10 +238,10 @@ class Generate(QWidget, Ui_Generate):
                     child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
                     child.setCheckState(0, Qt.Unchecked)
 
-                    if current_row_data[name2col["N"]] is "NORMAL":
-                        child.setBackground(int(index), QBrush(Qt.green))
-                    else:
-                        child.setBackground(int(index), QBrush(Qt.yellow))
+#                    if current_row_data[name2col["N"]] is "NORMAL":
+#                        child.setBackground(int(index), QBrush(Qt.green))
+#                    else:
+#                        child.setBackground(int(index), QBrush(Qt.yellow))
 
     def populate_plainTextEdit(self, parent):
         SampleSheetCreator_settings = QSettings('vll', 'SampleSheetCreator')

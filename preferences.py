@@ -1,7 +1,8 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5.QtWidgets import QTableWidget, QApplication, QMainWindow, QTableWidgetItem, QFileDialog, QComboBox, QDialog, QWidget, QListWidgetItem
-from PyQt5.QtCore import QSettings, QDir
+from PyQt5.QtWidgets import QTableWidget, QApplication, QMainWindow, QTableWidgetItem, \
+    QFileDialog, QComboBox, QDialog, QWidget, QListWidgetItem, QSizeGrip
+from PyQt5.QtCore import QSettings, QDir, Qt
 
 from gui.pref import Ui_Form
 from PyQt5 import QtGui
@@ -49,6 +50,35 @@ class Preferences(QWidget, Ui_Form):
             item = QListWidgetItem(i)
             self.listWidget_investigators.addItem(item)
 
+        stylesheet = """
+                        QTableWidget { 
+                            background-color: rgb(80, 80, 80);
+                        }
+
+                        QPushButton { 
+                            background-color: rgb(90,70,0); 
+                        }
+                        QTreeWidget::indicator  {
+                            width: 10px;
+                            height: 10px;
+                            margin: 5px;
+                            border-radius: 5px;
+                            border: 3px solid rgb(120,90,0); 
+                        }
+                        QTreeWidget::indicator::unchecked  {
+                            background-color: transparent rgb(80, 80, 80);
+                        }
+                        QTreeWidget::indicator::checked {
+                            background-color: rgb(150,120,0);
+                        }
+                        QTreeWidget {
+                            background-color: rgb(80, 80, 80);
+                        }
+                        """
+
+        self.setStyleSheet(stylesheet)
+        self.grip1 = QSizeGrip(self)
+        self.verticalLayout_3.addWidget(self.grip1, 0, Qt.AlignRight | Qt.AlignBottom)
 
     def ok(self, parent):
         SampleSheetCreator_settings = QSettings('vll', 'SampleSheetCreator')
